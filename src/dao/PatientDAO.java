@@ -16,18 +16,20 @@ import java.util.*;
 public class PatientDAO {
     //ADD new patient
     public boolean addPatient(Patient patient){
-        String sql = "INSERT INTO patients(name, surname, age, phone, email, gender, bloodGroup, profile_photo)"
+        String sql = "INSERT INTO patients(username, password, name, surname, age, phone, email, gender, bloodGroup, profile_photo)"
         + "VALUES(?, ?, ?, ?, ?, ?)";
         try(Connection conn = Database.getConnection();
             PreparedStatement pst = conn.prepareStatement(sql)){
-            pst.setString(1, patient.getName());
-            pst.setString(2, patient.getSurname());
-            pst.setInt(3, patient.getAge());
-            pst.setString(4, patient.getPhone());
-            pst.setString(5, patient.getEmail());
-            pst.setString(6, patient.getGender());
-            pst.setString(7, patient.getBloodGroup());
-            pst.setString(8, patient.getProfilePhoto());
+            pst.setString(1, patient.getUsername());
+            pst.setString(2, patient.getPassword());
+            pst.setString(3, patient.getName());
+            pst.setString(4, patient.getSurname());
+            pst.setInt(5, patient.getAge());
+            pst.setString(6, patient.getPhone());
+            pst.setString(7, patient.getEmail());
+            pst.setString(8, patient.getGender());
+            pst.setString(9, patient.getBloodGroup());
+            pst.setString(10, patient.getProfilePhoto());
             pst.executeUpdate();
             return true;
         }catch(SQLException e){
@@ -46,6 +48,8 @@ public class PatientDAO {
             while(rs.next()){
                 Patient p = new Patient(
                     rs.getInt("id"),
+                    rs.getString("username"),
+                    rs.getString("password"),
                     rs.getString("name"),
                     rs.getString("surname"),
                     rs.getInt("age"),
@@ -65,18 +69,19 @@ public class PatientDAO {
     
     //UPDATE patient
     public boolean updatePatient(Patient patient){
-        String sql = "UPDATE patients SET name=?, surname=?, age=?, phone=?, email=?, gender=?, bloodGroup=?, profile_photo=? WHERE id=?";
+        String sql = "UPDATE patients SET username=?, name=?, surname=?, age=?, phone=?, email=?, gender=?, bloodGroup=?, profile_photo=? WHERE id=?";
         try(Connection conn = Database.getConnection();
             PreparedStatement pst = conn.prepareStatement(sql)){
-            pst.setString(1, patient.getName());
-            pst.setString(2, patient.getSurname());
-            pst.setInt(3, patient.getAge());
-            pst.setString(4, patient.getPhone());
-            pst.setString(5, patient.getEmail());
-            pst.setString(6, patient.getGender());
-            pst.setString(7, patient.getBloodGroup());
-            pst.setString(8, patient.getProfilePhoto());
-            pst.setInt(9, patient.getId());
+            pst.setString(1,patient.getUsername());
+            pst.setString(2, patient.getName());
+            pst.setString(3, patient.getSurname());
+            pst.setInt(4, patient.getAge());
+            pst.setString(5, patient.getPhone());
+            pst.setString(6, patient.getEmail());
+            pst.setString(7, patient.getGender());
+            pst.setString(8, patient.getBloodGroup());
+            pst.setString(9, patient.getProfilePhoto());
+            pst.setInt(10, patient.getId());
             pst.executeUpdate();
             return true;
         } catch(SQLException e){

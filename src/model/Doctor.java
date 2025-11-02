@@ -4,91 +4,156 @@
  */
 package model;
 
+import java.sql.Timestamp;
+
 /**
  *
  * @author troy
  */
 public class Doctor {
-    private int id;
-    private String name;
-    private String surname;
-    private String speciality;
-    private String phone;
+    private int doctorId;
+    private String username;
+    private String password;
+    private String firstName;
+    private String lastName;
+    private String specialization;
     private String email;
-    private String profilePhoto;
+    private String phone;
+    private String gender;
+    private String roomNumber;
+    private String availability; // e.g., "Mon–Fri, 08:00–16:00"
+    private Timestamp createdAt;
     
     public Doctor(){
         
     }
     
-    public Doctor(int id, String name, String surname, String speciality, String phone, String email, String profilePhoto){
-        this.id = id;
-        this.name  = name;
-        this.surname = surname;
-        this.speciality = speciality;
-        this.phone = phone;
+    public Doctor(int doctorId, String username, String password, String firstName, String lastName,
+                  String specialization, String email, String phone, String gender,
+                  String roomNumber, String availability, Timestamp createdAt){
+        this.doctorId = doctorId;
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.specialization = specialization;
         this.email = email;
-        this.profilePhoto = profilePhoto;
-    }
-    
-    public int getId(){
-        return id;
-    }
-    
-    public void setId(int id){
-        this.id = id;
-    }
-    
-    public String getName(){
-        return name;
-    }
-    
-    public void setName(String name){
-        this.name = name;
-    }
-    
-    public String getSurname(){
-        return surname;
-    }
-    
-    public void setSurname(String surname){
-        this.surname = surname;
-    }
-    
-    public String getSpeciality(){
-        return speciality;
-    }
-    
-    public void setSpeciality(String speciality){
-        this.speciality = speciality;
-    }
-    
-    public String getPhone(){
-        return phone;
-    }
-    
-    public void setPhone(String phone){
         this.phone = phone;
+        this.gender = gender;
+        this.roomNumber = roomNumber;
+        this.availability = availability;
+        this.createdAt = createdAt;
     }
     
+    //Getters and Setters
+    public int getDoctorId(){
+        return doctorId; 
+    }
+    
+    public void setDoctorId(int doctorId){
+        this.doctorId = doctorId; 
+    }
+
+    public String getUsername(){
+        return username;
+    }
+    
+    public void setUsername(String username){
+        this.username = username; 
+    }
+
+    public String getPassword(){
+        return password;
+    }
+    
+    public void setPassword(String password){
+        this.password = password; 
+    }
+
+    public String getFirstName(){ 
+        return firstName; 
+    }
+    
+    public void setFirstName(String firstName){
+        this.firstName = firstName; 
+    }
+
+    public String getLastName(){
+        return lastName; 
+    }
+    
+    public void setLastName(String lastName){
+        this.lastName = lastName;
+    }
+
+    public String getSpecialization(){
+        return specialization;
+    }
+    
+    public void setSpecialization(String specialization){
+        this.specialization = specialization;
+    }
+
     public String getEmail(){
         return email;
     }
     
     public void setEmail(String email){
-        this.email = email;
+        this.email = email; 
+    }
+
+    public String getPhone(){
+        return phone; 
     }
     
-    public String getProfilePhoto(){
-        return profilePhoto;
+    public void setPhone(String phone){
+        this.phone = phone; 
+    }
+
+    public String getGender(){
+        return gender; 
     }
     
-    public void setProfilePhoto(String profilePhoto){
-        this.profilePhoto = profilePhoto;
+    public void setGender(String gender){
+        this.gender = gender; 
+    }
+
+    public String getRoomNumber(){
+        return roomNumber;
     }
     
+    public void setRoomNumber(String roomNumber){
+        this.roomNumber = roomNumber; 
+    }
+
+    public String getAvailability(){
+        return availability; 
+    }
+    
+    public void setAvailability(String availability){
+        this.availability = availability; 
+    }
+
+    public Timestamp getCreatedAt(){
+        return createdAt;
+    }
+    
+    public void setCreatedAt(Timestamp createdAt){
+        this.createdAt = createdAt; 
+    }
+
+    //Display info for debugging/logging
     @Override
-    public String toString(){
-        return name + " " + surname + " (" + speciality + ")";
+    public String toString() {
+        return "Doctor{" +
+                "doctorId=" + doctorId +
+                ", username='" + username + '\'' +
+                ", name='" + firstName + " " + lastName + '\'' +
+                ", specialization='" + specialization + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", gender='" + gender + '\'' +
+                ", availability='" + availability + '\'' +
+                '}';
     }
 }

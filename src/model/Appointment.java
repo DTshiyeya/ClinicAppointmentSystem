@@ -6,21 +6,23 @@ package model;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.sql.Timestamp;
 
 /**
  *
  * @author troy
  */
 public class Appointment {
-    private int id;
+    private int appointmentId;
     private int patientId;
     private int doctorId;
     private Date appointmentDate;
     private Time appointmentTime;
     private String reason;
-    private String status;
+    private String status; // e.g. Scheduled, Completed, Cancelled, Pending
+    private Timestamp createdAt;
     
-    //Proposed update fields from the patient
+    //Proposed update fields (for rescheduling requests)
     private Date proposedDate;
     private Time proposedTime;
     private String proposedReason;
@@ -29,96 +31,122 @@ public class Appointment {
         
     }
     
-    public Appointment(int id, int patientId, int doctorId, Date appointmentDate, Time appointmentTime, String reason, String status, Date proposedDate, Time proposedTime, String proposedReason){
-        this.id = id;
-        this.patientId  = patientId;
+    public Appointment(int appointmentId, int patientId, int doctorId, Date appointmentDate,
+                       Time appointmentTime, String reason, String status, Timestamp createdAt,
+                       Date proposedDate, Time proposedTime, String proposedReason){
+        this.appointmentId = appointmentId;
+        this.patientId = patientId;
         this.doctorId = doctorId;
         this.appointmentDate = appointmentDate;
         this.appointmentTime = appointmentTime;
         this.reason = reason;
         this.status = status;
+        this.createdAt = createdAt;
         this.proposedDate = proposedDate;
         this.proposedTime = proposedTime;
         this.proposedReason = proposedReason;
     }
     
-    public int getId(){
-        return id;
+    //Getters and Setters
+    public int getAppointmentId(){
+        return appointmentId; 
     }
     
-    public void setId(int id){
-        this.id = id;
+    public void setAppointmentId(int appointmentId){
+        this.appointmentId = appointmentId; 
     }
-    
+
     public int getPatientId(){
-        return patientId;
+        return patientId; 
     }
     
     public void setPatientId(int patientId){
-        this.patientId = patientId;
+        this.patientId = patientId; 
     }
-    
+
     public int getDoctorId(){
-        return doctorId;
+        return doctorId; 
     }
     
     public void setDoctorId(int doctorId){
-        this.doctorId = doctorId;
+        this.doctorId = doctorId; 
     }
-    
+
     public Date getAppointmentDate(){
-        return appointmentDate;
+        return appointmentDate; 
     }
     
     public void setAppointmentDate(Date appointmentDate){
-        this.appointmentDate = appointmentDate;
+        this.appointmentDate = appointmentDate; 
     }
-    
+
     public Time getAppointmentTime(){
-        return appointmentTime;
+        return appointmentTime; 
     }
     
     public void setAppointmentTime(Time appointmentTime){
-        this.appointmentTime = appointmentTime;
+        this.appointmentTime = appointmentTime; 
     }
-    
+
     public String getReason(){
-        return reason;
+        return reason; 
     }
     
     public void setReason(String reason){
-        this.reason = reason;
+        this.reason = reason; 
     }
-    
+
     public String getStatus(){
-        return status;
+        return status; 
     }
     
     public void setStatus(String status){
         this.status = status;
     }
+
+    public Timestamp getCreatedAt(){
+        return createdAt; 
+    }
     
+    public void setCreatedAt(Timestamp createdAt){
+        this.createdAt = createdAt;
+    }
+
     public Date getProposedDate(){
-        return proposedDate;
+        return proposedDate; 
     }
     
     public void setProposedDate(Date proposedDate){
-        this.proposedDate = proposedDate;
+        this.proposedDate = proposedDate; 
     }
-    
+
     public Time getProposedTime(){
-        return proposedTime;
+        return proposedTime; 
     }
     
     public void setProposedTime(Time proposedTime){
-        this.proposedTime = proposedTime;
+        this.proposedTime = proposedTime; 
     }
-    
+
     public String getProposedReason(){
-        return proposedReason;
+        return proposedReason; 
     }
     
     public void setProposedReason(String proposedReason){
         this.proposedReason = proposedReason;
+    }
+
+    //Display information for debugging/logging
+    @Override
+    public String toString() {
+        return "Appointment{" +
+                "appointmentId=" + appointmentId +
+                ", patientId=" + patientId +
+                ", doctorId=" + doctorId +
+                ", date=" + appointmentDate +
+                ", time=" + appointmentTime +
+                ", reason='" + reason + '\'' +
+                ", status='" + status + '\'' +
+                '}';
     }
 }
